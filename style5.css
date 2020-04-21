@@ -1,0 +1,19 @@
+table{
+    border: 1px solid rebeccapurple;
+}
+
+td, th{
+    padding: 6px;
+    text-align: center;
+    border-color: black;
+}
+th{
+    background-color: darksalmon;
+}
+td{
+    background-color: khaki;
+}
+
+.vacío{
+    background-color: gray;
+}
