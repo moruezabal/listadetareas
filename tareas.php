@@ -1,11 +1,15 @@
-<?
-require_once "db.php";
+<?php
 
-$sentencia = $db->prepare( "select * from tarea");
-$sentencia->execute();
-$tareas = $sentencia->fetchAll(PDO::FETCH_OBJ);
+require_once 'db.php';
 
-foreach($tareas as $tarea) {
-    echo $tarea->nombre;
-    }
+function showTasks(){
+
+    echo("Acá va la lista de tareas");
+
+}
+
+function addTask(){
+
+    echo("Se agregó una nueva tarea");
+}
 ?>

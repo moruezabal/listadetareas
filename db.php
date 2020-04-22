@@ -1,5 +1,8 @@
 <?
 
+/**
+ * Se conecta a la base de datos, y trae todas las tareas.
+ */
 
 function getTasks(){
 
@@ -11,9 +14,7 @@ $sentencia = $db->prepare( "select * from tarea");
 $sentencia->execute();
 $tareas = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
-foreach($tareas as $tarea) {
-    echo $tarea->nombre;
-    }
+return $tareas;
 }
 
 
