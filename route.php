@@ -1,35 +1,37 @@
-
 <?php
+    require_once 'lib/tasks.php';
 
-require_once "tareas.php";
+    // definimos la base url de forma dinamica
+    define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
-// Definimos la URL por defecto
-define('BASE URL', '//'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/');
+    // define una acción por defecto
+    if (empty($_GET['action'])) {
+        $_GET['action'] = 'listar';
+    } 
 
-// Acción por defecto
-if(empty($_GET['action'])){
-    $_GET['action'] = 'listar';
-}
+    // toma la acción que viene del usuario y parsea los parámetros
+    $accion = $_GET['action']; 
+    $parametros = explode('/', $accion);
+    //var_dump($parametros); die; // like console.log();
 
-else {
-    $partesURL = explode('/', $_GET['action']);
-    switch ($partesURL[0]){
-        case 'listar' :
+    // decide que camino tomar según TABLA DE RUTEO
+    switch ($parametros[0]) {
+        case 'listar': // /listar   ->   showTasks()
             showTasks();
-        break; 
+        break;
 
-        case 'nueva' :
+        case "nueva": // /nueva    ->    addTask()
             addTask();
         break;
 
-        default:
-            echo("404 Page not found");
+        case "eliminar": // /nueva    ->    addTask()
+            eraseTask($parametros[1]);
+        break;
+    
+        default: 
+            echo "404 not found";
         break;
     }
-
-}
-
-
 
 
 ?>
